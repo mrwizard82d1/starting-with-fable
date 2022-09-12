@@ -5,6 +5,10 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.0",
+    "@babel/node": "^7.18.10",
+    "@babel/preset-env": "^7.19.0",
     "fable-compiler": "^2.13.0",
     "fable-loader": "^2.1.9",
     "webpack": "^5.69.1",
