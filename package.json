@@ -1,0 +1,14 @@
+{
+  "name": "App",
+  "private": false,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "fable-compiler": "^2.13.0",
+    "fable-loader": "^2.1.9",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.2.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
