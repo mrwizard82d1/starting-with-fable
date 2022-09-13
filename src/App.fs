@@ -2,17 +2,18 @@ module App
 
 open Fable.Core
 
-// The "interface" approach
+// The `Emit` attribute alternative to interfaces
 
-// Interface used to "define" the JavaScript global `window` object.
-type Window =
-    // We are only interested in the `alert` function. The return type and argument type are "defined" by the
-    // JavaScript documentation of the `alert` function.
-    abstract alert: ?message: string -> unit
-    
-// Wire-up JavaScript and F# with `[<Global>]` attribute and `jsNative`.
-let [<Global>] window: Window = jsNative
+// Use the `Emit` attribute: a special attribute for mapping between F# and JavaScript. The "expression,"
+// `$0`, is the argument that can be supplied to `window.alert`.
+[<Emit("window.alert($0)")>]
+let alert (message: string): unit = jsNative
 
-// Actual client calls
-window.alert ("Global Fable window.alert")  // with parentheses
-window.alert "Global Fable window.alert sans parentheses"
+// Use parenthesized arguments
+alert ("Emit from Fable window.alert")
+
+// No parentheses
+alert "Emit from Fable window.alert sans parentheses"
+
+// F# pipeline style
+"Emit from window.alert with F# style" |> alert
