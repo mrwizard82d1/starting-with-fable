@@ -2,18 +2,18 @@ module App
 
 open Fable.Core
 
-// The `Emit` attribute alternative to interfaces
+// Calling `Math.random`
 
-// Use the `Emit` attribute: a special attribute for mapping between F# and JavaScript. The "expression,"
-// `$0`, is the argument that can be supplied to `window.alert`.
-[<Emit("window.alert($0)")>]
-let alert (message: string): unit = jsNative
+// Interface example
 
-// Use parenthesized arguments
-alert ("Emit from Fable window.alert")
+// Define an "interface"
+type Math =
+    abstract random: unit -> float
+    
+// Identify the "class" as native JavaScript. Remember that the name, in this case, `Math`, must have the
+// **same** case as the native JavaScript name.
+let [<Global>] Math: Math = jsNative
 
-// No parentheses
-alert "Emit from Fable window.alert sans parentheses"
+// Make the call
+JS.console.log (Math.random ())
 
-// F# pipeline style
-"Emit from window.alert with F# style" |> alert
